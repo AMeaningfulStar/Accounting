@@ -97,6 +97,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 }
 
 interface ManagmentType {
+  id: string;
   name: string;
   email: string;
   contactNumber: string;
@@ -198,8 +199,8 @@ export default function ManagmentTable({ tableData }: ManagmentTableType) {
         <TableBody>
           {tableData
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((tableData, idx) => (
-              <TableRow key={idx}>
+            .map((tableData) => (
+              <TableRow key={tableData.id}>
                 <TableCell component="th" scope="row" align="center">
                   {tableData.name}
                 </TableCell>
