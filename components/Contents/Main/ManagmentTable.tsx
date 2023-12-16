@@ -107,7 +107,7 @@ interface ManagmentType {
   description: string;
 }
 
-export default function ManagmentTable() {
+export default function ManagmentTable({dataPlus}:{dataPlus: boolean}) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(3);
   const [tableData, setTableData] = useState<Array<ManagmentType>>([]);
@@ -136,7 +136,7 @@ export default function ManagmentTable() {
     };
 
     fetchData();
-  }, []);
+  }, [dataPlus]);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
