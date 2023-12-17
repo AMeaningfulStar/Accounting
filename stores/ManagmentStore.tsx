@@ -23,6 +23,7 @@ interface ManagementState {
   setName: (newName: string) => void;
   setContactNumber: (newContactNumber: string) => void;
   setRemarks: (newRemarks: string) => void;
+  setManagment: (newManagment:  FormDataType) => void;
   clearManagment: () => void;
 }
 
@@ -121,6 +122,24 @@ const ManagementStores = create<ManagementState>()((set) => ({
       },
     })),
 
+  // user 정보 set
+  setManagment: (newManagmanet) =>
+    set((prev: ManagementState) => ({
+      formdata: {
+        ...prev.formdata,
+        department: newManagmanet.department,
+        name: newManagmanet.name,
+        contactNumber: newManagmanet.contactNumber,
+        email: newManagmanet.email,
+        role: newManagmanet.role,
+        id: newManagmanet.id,
+        password: "",
+        status: "Y",
+        registrationDate: newManagmanet.registrationDate,
+        remarks: newManagmanet.remarks,
+      },
+    })),
+
   clearManagment: () =>
     set((prev: ManagementState) => ({
       formdata: {
@@ -134,7 +153,7 @@ const ManagementStores = create<ManagementState>()((set) => ({
         password: "",
         status: "Y",
         registrationDate: "",
-        remarks: "memo",
+        remarks: "",
       },
     })),
 }));
