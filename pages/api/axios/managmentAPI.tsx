@@ -15,43 +15,72 @@ export const getManagment = async () => {
 };
 
 interface UserDataType {
-    department: string;
-    name: string;
-    contactNumber: string;
-    email: string;
-    role: string;
-    id: string;
-    password: string;
-    status: string;
-    registrationDate: string;
-    remarks: string;
-  }
+  department: string;
+  name: string;
+  contactNumber: string;
+  email: string;
+  role: string;
+  id: string;
+  password: string;
+  status: string;
+  registrationDate: string;
+  remarks: string;
+}
 
 // create a new user
 export const postManagment = async (userData: UserDataType) => {
-  try{
+  try {
     const response = await axios({
       method: "post",
       url: "/users/",
-      data: userData
-    })
+      data: userData,
+    });
 
     return response.data;
   } catch (error) {
     throw error;
   }
-}
+};
 
 // get user by ID
-export const getManagmentID = async (userID:string) => {
-  try{
+export const getManagmentID = async (userID: number) => {
+  try {
     const response = await axios({
       method: "get",
-      url: `/user/${userID}`,
+      url: `/users/${userID}`,
+    });
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Update user by ID
+export const putManagmentID = async (userData: UserDataType, userID: number) => {
+  try {
+    const response = await axios({
+      method: "put",
+      url: `/users/${userID}`,
+      data: userData,
+    });
+
+    return response.data;
+  } catch (error) {
+    throw Error;
+  }
+};
+
+// Delete user by ID
+export const deleteManagmentID = async (userID: number) => {
+  try{
+    const response = await axios({
+      method: "delete",
+      url: `/users/${userID}`
     })
 
     return response.data;
-  } catch(error) {
-    throw(error)
+  } catch (error) {
+    throw Error
   }
 }
