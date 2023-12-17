@@ -21,7 +21,7 @@ import ManagementStores from "@stores/ManagmentStore";
 
 export default function Management() {
   const [registrationModal, setRegistrationModal] = useState(false); // 등록 Modal
-  const [dataPlus, setDataplus] = useState(false); // 데이터 추가 여부
+  const [dataChange, setDataChange] = useState(false); // 데이터 추가 여부
   const {
     formdata,
     setId,
@@ -48,17 +48,17 @@ export default function Management() {
 
   const handleSubmit = async () => {
     try {
-      setDataplus(true);
+      setDataChange(true);
       const response = await postManagment(formdata);
 
-      if(response){
-        console.log('Success create user')
+      if (response) {
+        console.log("Success create user");
       }
     } catch (error) {
       console.error("Error create user:", error);
     } finally {
       closeRegistrationModal();
-      setDataplus(false);
+      setDataChange(false);
     }
   };
 
@@ -69,7 +69,7 @@ export default function Management() {
         <RegistrationBtn openModal={openRegistrationModal} />
       </div>
       <div className="border border-gray-300 w-full" />
-      <ManagmentTable dataPlus={dataPlus} />
+      <ManagmentTable dataChange={dataChange} setDataChange={setDataChange} />
       <div></div>
       {registrationModal && (
         <ModalLayout title="사용자 등록" closeModal={closeRegistrationModal}>
